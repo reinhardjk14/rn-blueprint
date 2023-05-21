@@ -5,7 +5,7 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import {ConnectedProps, connect} from 'react-redux';
 import NavigationService from './navigators/NavigationService';
-import Root from './navigators/stackNavigator';
+import DrawerNavigator from './navigators/drawerNavigator';
 import {RootState} from './redux';
 import {setCurrentRouteName} from './redux/actions/main';
 
@@ -41,7 +41,7 @@ function App(props: Props) {
         _setCurrentRouteName(currentRouteName);
         routeNameRef.current = currentRouteName;
       }}>
-      <Root />
+      <DrawerNavigator />
     </NavigationContainer>
   );
 }

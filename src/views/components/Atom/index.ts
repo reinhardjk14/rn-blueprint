@@ -1,4 +1,5 @@
 import {StyleProp, TextProps, TextStyle, ViewStyle} from 'react-native';
+import {Button} from './Button';
 import Icon from './Icon';
 import Text from './Text';
 
@@ -29,12 +30,30 @@ export interface IconSet {
 }
 
 export type IconName =
-  | 'love'
-  | 'left'
-  | 'filter'
-  | 'star'
-  | 'star-filled'
-  | 'star-half';
+  | 'home'
+  | 'file-text'
+  | 'compass2'
+  | 'arrow-up-left2'
+  | 'arrow-up2'
+  | 'arrow-up-right2'
+  | 'arrow-right2'
+  | 'arrow-down-right2'
+  | 'arrow-down2'
+  | 'arrow-down-left2'
+  | 'arrow-left2'
+  | 'circle-up'
+  | 'circle-left'
+  | 'circle-down'
+  | 'circle-right'
+  | 'pencil'
+  | 'calendar'
+  | 'floppy-disk'
+  | 'cogs'
+  | 'menu'
+  | 'menu2'
+  | 'menu3'
+  | 'menu4'
+  | 'filter';
 
 export interface IconMap {
   name: string;
@@ -62,4 +81,4 @@ export interface IIcon extends Omit<SvgIconProps, 'iconSet' | 'name' | 'size'> {
   offset?: number;
 }
 
-export {Text, Icon};
+export {Button, Text, Icon};

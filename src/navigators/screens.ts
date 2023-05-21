@@ -1,6 +1,7 @@
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import TabNavigator from './tabNavigator';
 import DrawerNavigator from './drawerNavigator';
+import {HomeScreenProps, ManageCategoryScreenProps} from 'src/utils/types';
 
 interface INavigationOption {
   name: string;
@@ -26,3 +27,14 @@ const MainScreen: Array<INavigationOption> = [
 ];
 
 export const Screens = [...MainScreen];
+
+export type RootStackParamList = {};
+export type RootDrawerParamList = {
+  Tabs: undefined;
+  Stacks: undefined;
+};
+
+export type RootTabsParamList = {
+  Home: HomeScreenProps;
+  ManageCategory: ManageCategoryScreenProps;
+};

@@ -3,13 +3,18 @@ import {HeaderTitle} from '_molecule/Header';
 import {Container, Content} from '_organism/Basic';
 import React from 'react';
 import {View} from 'react-native';
+import {ConnectedProps, connect} from 'react-redux';
+import {RootState} from 'src/redux';
+import {HomeScreenProps} from 'src/utils/types';
 
-const HomeScreen = props => {
+type Props = ReduxProps & HomeScreenProps;
+
+const HomeScreen = (props: Props) => {
   return (
     <Container>
       <HeaderTitle
         leftIcon="menu"
-        title={'Construction Machine Management'}
+        title={'Dashboard'}
         onPressLeftIcon={props.navigation.openDrawer}
       />
       <Content>
@@ -21,4 +26,10 @@ const HomeScreen = props => {
   );
 };
 
-export default HomeScreen;
+const mapStateToProps = ({}: RootState) => ({});
+const mapDispatchToProps = {};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type ReduxProps = ConnectedProps<typeof connector>;
+export default connector(HomeScreen);

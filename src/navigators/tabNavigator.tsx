@@ -7,8 +7,9 @@ import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {HomeScreen, ManageCategoryPage} from 'src/views/screens/tabs';
 import NavigationService from './NavigationService';
+import {RootTabsParamList} from './screens';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabsParamList>();
 
 export default function TabNavigator() {
   const {Common, Colors} = useTheme();

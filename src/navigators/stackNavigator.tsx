@@ -2,9 +2,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import {setNavigationState} from '../redux/actions/main';
-import {Screens} from './screens';
+import {RootStackParamList, Screens} from './screens';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function StackNavigator() {
   const dispatch = useDispatch();

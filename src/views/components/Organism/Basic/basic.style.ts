@@ -6,7 +6,7 @@ const Base = StyleSheet.create({
   'Basic.Container': {
     flexDirection: 'column',
     height: height,
-    backgroundColor: 'white',
+    backgroundColor: '#F9F9F9',
   },
   'Translucent.Container': {
     paddingTop: StatusBar.currentHeight || 34,

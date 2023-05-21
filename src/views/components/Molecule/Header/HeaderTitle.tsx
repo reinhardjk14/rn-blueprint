@@ -9,7 +9,8 @@ const HeaderTitle = ({
   style,
   title,
   titleColor,
-  onPressBack,
+  leftIcon = 'arrow-left2',
+  onPressLeftIcon,
   rightIcon,
   rightIconColor,
   onPressRightIcon,
@@ -21,19 +22,23 @@ const HeaderTitle = ({
 
   return (
     <HeaderWrapper style={[Common.header.headerBrandContent, style]}>
-      <TouchableOpacity onPress={onPressBack || defaultAction}>
-        <Icon name="arrow-left2" size="xl" />
+      <TouchableOpacity onPress={onPressLeftIcon || defaultAction}>
+        <Icon name={leftIcon} />
       </TouchableOpacity>
       <Text
         variant="semibold"
         color={titleColor || Colors.neutral[500]}
         size="lg"
-        style={{textAlign: 'center', width: '90%'}}>
+        style={{
+          textAlign: 'center',
+          textAlignVertical: 'center',
+          width: '90%',
+        }}>
         {title}
       </Text>
       {rightIcon ? (
         <TouchableOpacity onPress={onPressRightIcon}>
-          <Icon name={rightIcon} size="xl" color={rightIconColor} />
+          <Icon name={rightIcon} color={rightIconColor} />
         </TouchableOpacity>
       ) : (
         <View style={{width: FontSize['xl']}} />

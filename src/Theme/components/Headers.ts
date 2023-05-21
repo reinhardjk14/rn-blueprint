@@ -7,6 +7,7 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
     ...Gutters.tinyHPadding,
     ...Gutters.tinyVPadding,
     backgroundColor: Colors.white,
+    borderBottomWidth: 0.5,
   };
 
   return StyleSheet.create({
@@ -18,6 +19,7 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
       flexDirection: 'row',
       alignItems: 'center',
       width: '100%',
+      borderBottomColor: Colors.neutral[300],
     },
     headerWithSearch: {
       flexDirection: 'row',

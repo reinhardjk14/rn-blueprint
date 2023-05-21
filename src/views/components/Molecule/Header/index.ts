@@ -19,10 +19,11 @@ export interface IHeaderBack extends IHeader {
 
 export interface IHeaderTitle extends IHeader {
   title?: string;
+  leftIcon?: IconName;
   titleColor?: string;
   placeholder?: string;
   withoutBack?: boolean;
-  onPressBack?: () => void;
+  onPressLeftIcon?: () => void;
   rightIcon?: IconName;
   rightIconColor?: string;
   onPressRightIcon?: () => void;

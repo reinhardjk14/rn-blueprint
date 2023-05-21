@@ -28,6 +28,16 @@ declare global {
   }
 }
 
+const middlewares = [
+  thunk,
+  /* other middlewares */
+];
+
+if (__DEV__) {
+  const createDebugger = require('redux-flipper').default;
+  middlewares.push(createDebugger());
+}
+
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
@@ -40,7 +50,7 @@ const pReducers = persistReducer<RootState>(persistConfig, mergedReducer);
 
 const store = createStore(
   pReducers,
-  composeWithDevTools(applyMiddleware(thunk)),
+  composeWithDevTools(applyMiddleware(...middlewares)),
 );
 
 const persistor = persistStore(store);

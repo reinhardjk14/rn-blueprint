@@ -1,4 +1,4 @@
-package com.webbeet.newarchitecture.components;
+package com.clickstock.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

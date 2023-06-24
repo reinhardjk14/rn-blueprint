@@ -42,7 +42,7 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   version: 0,
-  whitelist: ['main', 'theme', 'category'],
+  whitelist: ['main', 'theme'],
   timeout: 0,
 };
 

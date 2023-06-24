@@ -1,8 +1,13 @@
 apply plugin: "com.android.application"
-
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+project.ext.envConfigFiles = [
+    debug: ".env.development",
+    release: ".env.production",
+    anothercustombuild: ".env",
+]
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 

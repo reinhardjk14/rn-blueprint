@@ -26,6 +26,8 @@ target 'ClickStock' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
   target 'ClickStockTests' do
     inherit! :complete
     # Pods for testing

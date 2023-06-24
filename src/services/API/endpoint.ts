@@ -1,1 +1,6 @@
-export default class Endpoints {}
+export default class Endpoints {
+  static photos = {
+    listPhotos: '/photos',
+    searchPhotos: '/search/photos',
+  };
+}

@@ -13,3 +13,14 @@ export function formatNumber(number: number): string {
 
   return formattedNumber;
 }
+
+export const URLSearchParams = (params: any = {}) => {
+  let qparam = '?';
+  let keys = Object.keys(params);
+  for (let id = 0; id < keys.length; id++) {
+    const element = keys[id];
+    qparam += `${element}=${params[element]}&`;
+  }
+
+  return qparam;
+};

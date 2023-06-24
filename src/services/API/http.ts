@@ -1,8 +1,7 @@
 import Axios from 'axios';
 
+import Config from 'react-native-config';
 import {BASE_URL} from '../BaseURL';
-import {store} from 'src/redux';
-const {dispatch} = store;
 
 const instance = Axios.create({
   baseURL: BASE_URL,
@@ -10,9 +9,10 @@ const instance = Axios.create({
 
 instance.interceptors.request.use(
   (config: any) => {
-    const token = '';
+    const token = Config.ACCESS_KEY;
 
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Client-ID ${token}`;
+    config.headers['Accept-Version'] = 'v1';
     return config;
   },
   error => {

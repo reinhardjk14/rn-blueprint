@@ -11,7 +11,7 @@ const CardUserPhoto = ({data}: CardUserPhotoProps) => {
   const {Layout, Gutters, Common} = useTheme();
 
   const openDetailUser = React.useCallback(() => {
-    NavigationService.navigate('UserDetail');
+    NavigationService.navigate('UserDetail', {data});
   }, []);
 
   return (

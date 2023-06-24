@@ -27,14 +27,14 @@ const Outline = ({
         props.style ? props.style : {},
       ]}>
       {props.loading ? (
-        <ActivityIndicator size="large" color={Colors.primary[600]} />
+        <ActivityIndicator size="large" color={Colors.LightGray} />
       ) : (
         <ButtonBody
           {...props}
           title={props.title}
           titleSize={titleSize}
           titleStyle={titleStyle}
-          iconColor={Colors.neutral[500]}
+          iconColor={Colors.LightGray}
         />
       )}
     </TouchableOpacity>

@@ -13,19 +13,19 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
     button: buttonStyles({Colors, ...args}),
     ...StyleSheet.create({
       backgroundPrimary: {
-        backgroundColor: Colors.primary[600],
+        backgroundColor: Colors.LightBlue,
       },
       backgroundLayout: {
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.Beige,
       },
       backgroundReset: {
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.White,
       },
       textInput: {
         borderWidth: 1,
-        borderColor: Colors.neutral[500],
-        backgroundColor: Colors.white,
-        color: Colors.neutral[500],
+        borderColor: Colors.LightGray,
+        backgroundColor: Colors.White,
+        color: Colors.LightGray,
         minHeight: 50,
         textAlign: 'center',
         marginTop: 10,
@@ -33,13 +33,13 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
       },
       elevated: {
         shadowOffset: {width: 0, height: 2},
-        shadowColor: Colors.neutral[500],
+        shadowColor: Colors.LightGray,
         shadowOpacity: 0.5,
         shadowRadius: 5,
         elevation: 2,
       },
       bottomTabsContainer: {
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.White,
         flex: 1,
         width: '100%',
         position: 'absolute',
@@ -50,7 +50,7 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
         borderTopRightRadius: 18,
         borderTopLeftRadius: 18,
         elevation: 5,
-        shadowColor: Colors.black,
+        shadowColor: Colors.Dark,
         shadowOffset: {width: 0, height: 0},
         shadowRadius: 10,
         shadowOpacity: 0.1,

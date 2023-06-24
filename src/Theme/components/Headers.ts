@@ -6,7 +6,7 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
   const wrapper = {
     ...Gutters.tinyHPadding,
     ...Gutters.tinyVPadding,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.White,
     borderBottomWidth: 0.5,
   };
 
@@ -19,7 +19,7 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
       flexDirection: 'row',
       alignItems: 'center',
       width: '100%',
-      borderBottomColor: Colors.neutral[300],
+      borderBottomColor: Colors.Beige,
     },
     headerWithSearch: {
       flexDirection: 'row',

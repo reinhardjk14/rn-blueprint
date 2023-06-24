@@ -8,34 +8,34 @@ export default function ({FontSize, Colors}: ThemeVariables) {
   return StyleSheet.create({
     textSmall: {
       fontSize: FontSize.base,
-      color: Colors.neutral[500],
+      color: Colors.LightGray,
     },
     textRegular: {
       fontSize: FontSize.normal,
-      color: Colors.neutral[500],
+      color: Colors.LightGray,
     },
     textLarge: {
       fontSize: FontSize.large,
-      color: Colors.neutral[500],
+      color: Colors.LightGray,
     },
     textButton: {
       fontSize: FontSize.base,
-      color: Colors.buttonTitle,
+      color: Colors.LightGray,
     },
     titleSmall: {
       fontSize: FontSize.base * 2,
       fontFamily: 'Poppins-SemiBold',
-      color: Colors.neutral[500],
+      color: Colors.LightGray,
     },
     titleRegular: {
       fontSize: FontSize.normal * 2,
       fontFamily: 'Poppins-Bold',
-      color: Colors.neutral[500],
+      color: Colors.LightGray,
     },
     titleLarge: {
       fontSize: FontSize.large * 2,
       fontFamily: 'Poppins-Bold',
-      color: Colors.neutral[500],
+      color: Colors.LightGray,
     },
     textCenter: {
       textAlign: 'center',

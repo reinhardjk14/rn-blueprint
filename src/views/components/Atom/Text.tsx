@@ -10,7 +10,7 @@ const Text = ({
   variant = 'normal',
   style,
   children,
-  color = Colors.neutral[500],
+  color = Colors.Dark,
   ...props
 }: IText) => {
   const {Fonts}: {Fonts: any} = useTheme();

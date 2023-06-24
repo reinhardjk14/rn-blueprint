@@ -41,7 +41,7 @@ export const ButtonBody = ({
           <Icon
             name={icon}
             size={iconSize ? iconSize : titleSize}
-            color={iconColor ? iconColor : Colors.buttonTitle}
+            color={iconColor ? iconColor : Colors.Dark}
           />
         </View>
       ) : null}

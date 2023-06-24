@@ -14,10 +14,10 @@ const Primary = ({
 }: IButtonPrimary) => {
   const {Colors, Gutters, Common} = useTheme();
   const defaultColors = props.disabled
-    ? Colors.disabled
+    ? Colors.LightGray
     : colors
     ? colors
-    : Colors.primary[600];
+    : Colors.LightBlue;
 
   return (
     <TouchableOpacity
@@ -37,7 +37,7 @@ const Primary = ({
         props.style ? props.style : {},
       ]}>
       {loading ? (
-        <ActivityIndicator size="small" color={Colors.white} />
+        <ActivityIndicator size="small" color={Colors.White} />
       ) : (
         <ButtonBody {...props} title={title} titleSize={titleSize} />
       )}

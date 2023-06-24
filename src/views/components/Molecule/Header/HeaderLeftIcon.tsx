@@ -11,7 +11,7 @@ const HeaderLeftIcon = ({
   iconColor,
 }: IHeaderBack) => {
   const {Colors} = useTheme();
-  const defaultIconColor = Colors.buttonTitle;
+  const defaultIconColor = Colors.Dark;
   const defaultAction = () => {
     NavigationService.navigateBack();
   };

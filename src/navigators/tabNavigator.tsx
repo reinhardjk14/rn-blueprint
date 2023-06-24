@@ -53,7 +53,7 @@ export default function TabNavigator() {
                 <Icon
                   name={i.icon}
                   size={20}
-                  color={active ? Colors.primary[600] : Colors.neutral[400]}
+                  color={active ? Colors.SageGreen : Colors.BabyBlue}
                 />
               </TouchableOpacity>
             );

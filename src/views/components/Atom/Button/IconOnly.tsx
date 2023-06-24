@@ -25,14 +25,14 @@ const IconOnly = ({
         {width: sizeWrapper * 2},
         {
           borderWidth: noBorder ? 0 : 2,
-          borderColor: borderColor || Colors.neutral[500],
+          borderColor: borderColor || Colors.LightGray,
         },
         props.style ? props.style : {},
       ]}>
       <Icon
         name={icon}
         size={sizeWrapper}
-        color={iconColor ? iconColor : Colors.neutral[500]}
+        color={iconColor ? iconColor : Colors.LightGray}
       />
     </TouchableOpacity>
   );

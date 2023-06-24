@@ -17,9 +17,9 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
       ...base,
       ...Layout.rowCenter,
       ...Gutters.tinyVPadding,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.White,
       borderWidth: 2,
-      borderColor: Colors.primary[600],
+      borderColor: Colors.LightBlue,
     },
     icon: {
       ...Layout.center,
@@ -29,7 +29,7 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
       ...Gutters.tinyVMargin,
       borderRadius: 12,
       borderWidth: 2,
-      borderColor: Colors.neutral[500],
+      borderColor: Colors.Beige,
       flexGrow: 0,
     },
   });

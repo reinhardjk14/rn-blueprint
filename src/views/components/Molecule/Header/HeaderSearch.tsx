@@ -1,9 +1,8 @@
-import Images from '_atom/Images';
 import SearchButton from '_atom/Input/SearchInput';
 import {Icon} from '_atom/index';
 import useTheme from '_hooks/useTheme';
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import NavigationService from 'src/navigators/NavigationService';
 import {HeaderWrapper, IHeaderSearch} from './index';
 
@@ -23,7 +22,7 @@ const HeaderSearch = ({
 
   return (
     <HeaderWrapper style={[Common.header.headerBrandContent, style]}>
-      {leftImage ? <Images source={leftImage} style={leftImageStyle} /> : null}
+      {leftImage ? <Image source={leftImage} style={leftImageStyle} /> : null}
 
       {!leftImage ? (
         <TouchableOpacity onPress={onPressLeftIcon || defaultAction}>

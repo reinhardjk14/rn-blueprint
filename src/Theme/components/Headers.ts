@@ -22,8 +22,7 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
       borderBottomColor: Colors.Beige,
     },
     headerHome: {
-      ...Gutters.tinyHPadding,
-      ...Gutters.smallVPadding,
+      ...Gutters.smallPadding,
       justifyContent: 'space-between',
       flexDirection: 'row',
       alignItems: 'center',

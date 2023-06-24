@@ -20,6 +20,14 @@ export type ItemPhotoSponsorDTO = {
   tagline_url: string;
   sponsor: UserDTO;
 } | null;
+export type ItemPhotoPreviewDTO = {
+  id: string;
+  slug: string;
+  created_at: string;
+  updated_at: string;
+  blur_hash: string;
+  urls: ItemPhotoUrlDTO;
+};
 
 export type ItemPhotoDTO = {
   id: string;

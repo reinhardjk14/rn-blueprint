@@ -1,18 +1,17 @@
-import Images from '_atom/Images';
-import {Text} from '_atom/index';
-import {listPhotos} from '_constant/dummy';
+import {listPhotos, listTopics} from '_constant/dummy';
 import useTheme from '_hooks/useTheme';
 import {HeaderSearch} from '_molecule/Header';
-import {Container, Content} from '_organism/Basic';
-import {width} from '_theme/Layout';
+import {Container} from '_organism/Basic';
 import React, {useEffect, useState} from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList} from 'react-native';
 import {ConnectedProps, connect} from 'react-redux';
 import {ItemPhotoDTO} from 'src/Interfaces/photos';
+import {ItemTopicDTO} from 'src/Interfaces/topics';
 import {RootState} from 'src/redux';
 import {HomeScreenProps} from 'src/utils/types';
-import ExplorerList from './ExplorerList';
 import CardUserPhoto from './CardUserPhoto';
+import ExplorerList from './ExplorerList';
+import {width} from '_theme/Layout';
 
 type Props = ReduxProps & HomeScreenProps;
 const dummyUserImg =
@@ -26,10 +25,12 @@ const HomeScreen = (props: Props) => {
   );
 
   const [photos, setPhotos] = useState<ItemPhotoDTO[]>([]);
+  const [topics, setTopics] = useState<ItemTopicDTO[]>([]);
 
   useEffect(() => {
     // temporary data - remove when implement API
     setPhotos(listPhotos);
+    setTopics(listTopics);
   }, []);
 
   const renderItem = React.useCallback(
@@ -50,10 +51,11 @@ const HomeScreen = (props: Props) => {
       />
       <FlatList
         data={photos}
-        ListHeaderComponent={<ExplorerList />}
+        ListHeaderComponent={<ExplorerList data={topics} />}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        style={Gutters.largeLPadding}
+        style={Gutters.largePadding}
+        contentContainerStyle={{paddingBottom: width * 0.3}}
       />
     </Container>
   );

@@ -58,6 +58,7 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
         shadowOpacity: 0.1,
         paddingVertical: width * 0.03,
         paddingHorizontal: width * 0.03,
+        paddingBottom: width * 0.045,
       },
       buttonTab: {
         ...args.Layout.row,
@@ -81,5 +82,36 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
     }),
     header: headerStyles({Colors, ...args}),
     input: inputStyles({Colors, ...args}),
+    exploreItemWrapper: {
+      width: width * 0.4,
+      height: width * 0.3,
+      borderRadius: width * 0.03,
+      padding: width * 0.03,
+      alignItems: 'flex-start',
+      justifyContent: 'flex-end',
+    },
+    topicItemBadge: {
+      borderRadius: width * 0.03,
+      backgroundColor: 'rgba(0,0,0,0.4)',
+    },
+    userAvatar: {
+      width: width * 0.1,
+      height: width * 0.1,
+      borderRadius: (width * 0.1) / 2,
+      borderWidth: 1,
+      borderColor: Colors.LightGray,
+    },
+    customDot: {
+      width: 5,
+      height: 5,
+      borderRadius: 5,
+      backgroundColor: Colors.Dark,
+      marginBottom: 2.5,
+      marginHorizontal: width * 0.03,
+    },
+    photoItem: {
+      aspectRatio: 1.2,
+      borderRadius: width * 0.03,
+    },
   };
 }

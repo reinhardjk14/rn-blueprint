@@ -1,3 +1,4 @@
+import Images from '_atom/Images';
 import {Icon, Text} from '_atom/index';
 import useTheme from '_hooks/useTheme';
 import React from 'react';
@@ -10,30 +11,34 @@ const HeaderTitle = ({
   title,
   titleColor,
   leftIcon = 'arrow-left2',
+  leftImage,
+  leftImageStyle,
   onPressLeftIcon,
   rightIcon,
   rightIconColor,
   onPressRightIcon,
 }: IHeaderTitle) => {
   const {Common, FontSize, Colors} = useTheme();
+  const {header: styles} = Common;
   const defaultAction = () => {
     NavigationService.navigateBack();
   };
 
   return (
     <HeaderWrapper style={[Common.header.headerBrandContent, style]}>
-      <TouchableOpacity onPress={onPressLeftIcon || defaultAction}>
-        <Icon name={leftIcon} />
-      </TouchableOpacity>
+      {leftImage ? <Images source={leftImage} style={leftImageStyle} /> : null}
+
+      {!leftImage ? (
+        <TouchableOpacity onPress={onPressLeftIcon || defaultAction}>
+          <Icon name={leftIcon} />
+        </TouchableOpacity>
+      ) : null}
+
       <Text
         variant="semibold"
         color={titleColor || Colors.Primary}
         size="lg"
-        style={{
-          textAlign: 'center',
-          textAlignVertical: 'center',
-          width: '90%',
-        }}>
+        style={styles.headerTitle}>
         {title}
       </Text>
       {rightIcon ? (

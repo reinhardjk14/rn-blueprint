@@ -6,6 +6,7 @@
 import {StyleSheet} from 'react-native';
 import buttonStyles from './components/Buttons';
 import headerStyles from './components/Headers';
+import inputStyles from './components/Input';
 import {CommonParams} from './theme';
 import {width} from './Layout';
 
@@ -17,7 +18,7 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
         backgroundColor: Colors.Primary,
       },
       backgroundLayout: {
-        backgroundColor: Colors.Beige,
+        backgroundColor: Colors.White,
       },
       backgroundReset: {
         backgroundColor: Colors.White,
@@ -70,7 +71,15 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
         flex: 1.5,
         backgroundColor: Colors.Primary,
       },
+      avatar: {
+        width: width * 0.1,
+        height: width * 0.1,
+        borderRadius: (width * 0.1) / 2,
+        borderColor: Colors.Primary,
+        borderWidth: 0.5,
+      },
     }),
     header: headerStyles({Colors, ...args}),
+    input: inputStyles({Colors, ...args}),
   };
 }

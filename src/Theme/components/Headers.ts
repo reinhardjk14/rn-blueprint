@@ -21,6 +21,15 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
       width: '100%',
       borderBottomColor: Colors.Beige,
     },
+    headerHome: {
+      ...Gutters.tinyHPadding,
+      ...Gutters.smallVPadding,
+      justifyContent: 'space-between',
+      flexDirection: 'row',
+      alignItems: 'center',
+      width: '100%',
+      borderBottomColor: Colors.White,
+    },
     headerWithSearch: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -30,6 +39,11 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
     headerLogo: {
       width: width * 0.35,
       height: height * 0.04,
+    },
+    headerTitle: {
+      textAlign: 'center',
+      textAlignVertical: 'center',
+      width: '90%',
     },
   });
 }

@@ -4,6 +4,6 @@
 
 export default function () {
   return {
-    // [image_key_name] : image_source
+    underMaintenance: require('_assets/Images/maintenance.jpg'),
   };
 }

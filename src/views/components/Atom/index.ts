@@ -57,7 +57,8 @@ export type IconName =
   | 'heart'
   | 'heartfilled'
   | 'archive'
-  | 'search';
+  | 'search'
+  | 'user';
 
 export interface IconMap {
   name: string;

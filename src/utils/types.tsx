@@ -24,3 +24,19 @@ export type ManageLikedScreenProps = CompositeScreenProps<
     DrawerScreenProps<RootDrawerParamList>
   >
 >;
+
+export type CollectionsPageProps = CompositeScreenProps<
+  BottomTabScreenProps<RootTabsParamList, 'CollectionsPage'>,
+  CompositeScreenProps<
+    NativeStackScreenProps<RootStackParamList>,
+    DrawerScreenProps<RootDrawerParamList>
+  >
+>;
+
+export type ProfilePageProps = CompositeScreenProps<
+  BottomTabScreenProps<RootTabsParamList, 'ProfilePage'>,
+  CompositeScreenProps<
+    NativeStackScreenProps<RootStackParamList>,
+    DrawerScreenProps<RootDrawerParamList>
+  >
+>;

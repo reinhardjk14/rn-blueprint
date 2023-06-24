@@ -7,13 +7,14 @@ import {StyleSheet} from 'react-native';
 import buttonStyles from './components/Buttons';
 import headerStyles from './components/Headers';
 import {CommonParams} from './theme';
+import {width} from './Layout';
 
 export default function <C>({Colors, ...args}: CommonParams<C>) {
   return {
     button: buttonStyles({Colors, ...args}),
     ...StyleSheet.create({
       backgroundPrimary: {
-        backgroundColor: Colors.LightBlue,
+        backgroundColor: Colors.Primary,
       },
       backgroundLayout: {
         backgroundColor: Colors.Beige,
@@ -54,6 +55,7 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
         shadowOffset: {width: 0, height: 0},
         shadowRadius: 10,
         shadowOpacity: 0.1,
+        paddingVertical: width * 0.03,
       },
       buttonTab: {
         flex: 2,

@@ -17,8 +17,8 @@ export type HomeScreenProps = CompositeScreenProps<
   >
 >;
 
-export type ManageCategoryScreenProps = CompositeScreenProps<
-  BottomTabScreenProps<RootTabsParamList, 'ManageCategory'>,
+export type ManageLikedScreenProps = CompositeScreenProps<
+  BottomTabScreenProps<RootTabsParamList, 'ManageLiked'>,
   CompositeScreenProps<
     NativeStackScreenProps<RootStackParamList>,
     DrawerScreenProps<RootDrawerParamList>

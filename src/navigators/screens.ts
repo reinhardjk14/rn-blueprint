@@ -1,7 +1,7 @@
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
-import TabNavigator from './tabNavigator';
+import {HomeScreenProps, ManageLikedScreenProps} from 'src/utils/types';
 import DrawerNavigator from './drawerNavigator';
-import {HomeScreenProps, ManageCategoryScreenProps} from 'src/utils/types';
+import TabNavigator from './tabNavigator';
 
 interface INavigationOption {
   name: string;
@@ -36,5 +36,5 @@ export type RootDrawerParamList = {
 
 export type RootTabsParamList = {
   Home: HomeScreenProps;
-  ManageCategory: ManageCategoryScreenProps;
+  ManageLiked: ManageLikedScreenProps;
 };

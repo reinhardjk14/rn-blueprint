@@ -53,7 +53,11 @@ export type IconName =
   | 'menu2'
   | 'menu3'
   | 'menu4'
-  | 'filter';
+  | 'filter'
+  | 'heart'
+  | 'heartfilled'
+  | 'archive'
+  | 'search';
 
 export interface IconMap {
   name: string;

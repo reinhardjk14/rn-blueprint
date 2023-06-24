@@ -1,12 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 
-const ManageCategoryPage = () => {
+const ManageLiked = () => {
   return (
     <View>
-      <Text>ManageCategoryPage</Text>
+      <Text>ManageLiked</Text>
     </View>
   );
 };
 
-export default ManageCategoryPage;
+export default ManageLiked;

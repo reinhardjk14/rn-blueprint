@@ -1,5 +1,6 @@
 export const Colors = {
-  LightBlue: '#1C455D',
+  Primary: '#1C455D',
+  Secondary: '#5B6B81',
   SkyBlue: '#185A70',
   BabyBlue: '#1F3E57',
   MintGreen: '#2A4036',
@@ -18,7 +19,7 @@ export const Colors = {
 };
 
 export const NavigationColors = {
-  primary: Colors.LightBlue,
+  primary: Colors.Primary,
 };
 
 export default {

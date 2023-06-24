@@ -13,7 +13,8 @@ import {Variables} from './themes/default_dark';
  * Colors
  */
 export const Colors = {
-  LightBlue: '#AED9E0',
+  Primary: '#0D294D',
+  Secondary: '#5B6B81',
   SkyBlue: '#87CEEB',
   BabyBlue: '#C6E2FF',
   MintGreen: '#B2DFBE',
@@ -32,7 +33,7 @@ export const Colors = {
 };
 
 export const NavigationColors = {
-  primary: Colors.LightBlue,
+  primary: Colors.Primary,
 };
 
 const scale = width / 320;

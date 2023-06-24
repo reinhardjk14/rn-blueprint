@@ -27,7 +27,7 @@ const HeaderTitle = ({
       </TouchableOpacity>
       <Text
         variant="semibold"
-        color={titleColor || Colors.LightBlue}
+        color={titleColor || Colors.Primary}
         size="lg"
         style={{
           textAlign: 'center',

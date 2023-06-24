@@ -1,12 +1,20 @@
-export const bottomTabs = [
+import {IconName} from '_atom/index';
+
+export type BottomTabType = {
+  name: string;
+  icon: IconName;
+  loginRequired: boolean;
+};
+
+export const bottomTabs: BottomTabType[] = [
   {
     name: 'Home',
     icon: 'home',
     loginRequired: false,
   },
   {
-    name: 'ManageCategory',
-    icon: 'cogs',
-    loginRequired: true,
+    name: 'ManageLiked',
+    icon: 'heart',
+    loginRequired: false,
   },
 ];

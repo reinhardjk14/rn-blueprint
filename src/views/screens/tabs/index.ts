@@ -1,2 +1,2 @@
 export {HomeScreen} from './Home';
-export {ManageCategoryPage} from './ManageCategory';
+export {ManageLiked} from './ManageLiked';

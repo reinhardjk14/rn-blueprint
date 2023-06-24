@@ -1,11 +1,13 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 import Icon from '_atom/Icon';
-import {IconName} from '_atom/index';
-import {bottomTabs} from '_constant/app';
+import {BottomTabType, bottomTabs} from '_constant/app';
 import useTheme from '_hooks/useTheme';
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {HomeScreen, ManageCategoryPage} from 'src/views/screens/tabs';
+import {HomeScreen, ManageLiked} from 'src/views/screens/tabs';
 import NavigationService from './NavigationService';
 import {RootTabsParamList} from './screens';
 
@@ -13,52 +15,42 @@ const Tab = createBottomTabNavigator<RootTabsParamList>();
 
 export default function TabNavigator() {
   const {Common, Colors} = useTheme();
-  const bottomTabView = (e: any) => {
-    const currentPositionIdx = e.state.index;
-    const routes = e?.state?.routes;
-    const routesData = routes.map((i: any) => {
-      bottomTabs.filter((r: {name: string; icon: string}) => {
-        if (i.name === r.name) {
-          i = {
-            ...r,
-          };
-          return i;
-        }
-      });
-      return i;
-    });
 
-    const navigateTab = async (tabItem: any) => {
-      NavigationService.navigate(tabItem?.name);
-    };
+  const bottomTabView = ({state}: BottomTabBarProps) => {
+    const currentPositionIdx = state.index;
+    const routes = state.routes;
+
+    const routesData = routes.map((route: any) => {
+      const matchingTab = bottomTabs.find(tab => tab.name === route.name);
+      if (matchingTab) {
+        return {
+          ...matchingTab,
+        };
+      }
+      return route;
+    });
 
     return (
       <View style={Common.bottomTabsContainer}>
-        {routesData?.map(
-          (
-            i: {
-              name: string;
-              icon: IconName;
-              id?: any;
-            },
-            idx: React.Key | null | undefined,
-          ) => {
-            const active = currentPositionIdx === idx;
+        {routesData?.map((tabItem: BottomTabType, idx: number) => {
+          const active = currentPositionIdx === idx;
+          function navigateTab() {
+            NavigationService.navigate(tabItem?.name);
+          }
 
-            return (
-              <TouchableOpacity
-                key={idx}
-                onPress={() => navigateTab(i)}
-                style={Common.buttonTab}>
-                <Icon
-                  name={i.icon}
-                  size={20}
-                  color={active ? Colors.SageGreen : Colors.BabyBlue}
-                />
-              </TouchableOpacity>
-            );
-          },
-        )}
+          return (
+            <TouchableOpacity
+              key={idx}
+              onPress={navigateTab}
+              style={Common.buttonTab}>
+              <Icon
+                name={tabItem.icon}
+                size={20}
+                color={active ? Colors.Primary : Colors.Secondary}
+              />
+            </TouchableOpacity>
+          );
+        })}
       </View>
     );
   };
@@ -73,8 +65,8 @@ export default function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="ManageCategory"
-        component={ManageCategoryPage}
+        name="ManageLiked"
+        component={ManageLiked}
         options={{
           headerShown: false,
         }}

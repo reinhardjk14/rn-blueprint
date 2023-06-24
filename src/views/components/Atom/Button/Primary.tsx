@@ -17,7 +17,7 @@ const Primary = ({
     ? Colors.LightGray
     : colors
     ? colors
-    : Colors.LightBlue;
+    : Colors.Primary;
 
   return (
     <TouchableOpacity

@@ -4,17 +4,13 @@ import {
   createDrawerNavigator,
 } from '@react-navigation/drawer';
 import React from 'react';
+import {DrawerItemPage} from 'src/views/screens/drawer';
 import {RootDrawerParamList} from './screens';
-import StackNavigator from './stackNavigator';
 import TabNavigator from './tabNavigator';
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 export default function DrawerNavigator() {
-  // TODO: continue get list menu from redux
-  // const listItemMenu: any[] = useSelector(({category}) => category.categories);
-  // console.log('listItemMenu', listItemMenu);
-
   function ListMenuItem(props: any) {
     return (
       <DrawerContentScrollView {...props}>
@@ -35,7 +31,7 @@ export default function DrawerNavigator() {
         headerShown: false,
       }}>
       <Drawer.Screen name={'Tabs'} component={TabNavigator} />
-      <Drawer.Screen name={'Stacks'} component={StackNavigator} />
+      <Drawer.Screen name="Help" component={DrawerItemPage} />
     </Drawer.Navigator>
   );
 }

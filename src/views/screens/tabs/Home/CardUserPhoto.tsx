@@ -2,16 +2,23 @@ import Images from '_atom/Images';
 import Text from '_atom/Text';
 import useTheme from '_hooks/useTheme';
 import React from 'react';
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {CardUserPhotoProps} from './index';
+import NavigationService from 'src/navigators/NavigationService';
 
 const CardUserPhoto = ({data}: CardUserPhotoProps) => {
   const {Layout, Gutters, Common} = useTheme();
 
+  const openDetailUser = React.useCallback(() => {
+    NavigationService.navigate('UserDetail');
+  }, []);
+
   return (
-    <View style={[Gutters.smallVMargin]}>
-      <View style={[Layout.row, Layout.alignItemsCenter]}>
+    <View style={[Gutters.smallVMargin, Gutters.largeRPadding]}>
+      <TouchableOpacity
+        onPress={openDetailUser}
+        style={[Layout.row, Layout.alignItemsCenter]}>
         <Images
           source={{uri: data.user.profile_image.medium}}
           style={Common.userAvatar}
@@ -27,7 +34,7 @@ const CardUserPhoto = ({data}: CardUserPhotoProps) => {
             <Text text={`${data?.user.total_photos} image`} size="xs" />
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
       <View style={Gutters.largeTMargin}>
         <Images
           source={{

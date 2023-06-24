@@ -22,7 +22,11 @@ const HeaderSearch = ({
 
   return (
     <HeaderWrapper style={[Common.header.headerBrandContent, style]}>
-      {leftImage ? <Image source={leftImage} style={leftImageStyle} /> : null}
+      {leftImage ? (
+        <TouchableOpacity onPress={onPressLeftIcon || defaultAction}>
+          <Image source={leftImage} style={leftImageStyle} />
+        </TouchableOpacity>
+      ) : null}
 
       {!leftImage ? (
         <TouchableOpacity onPress={onPressLeftIcon || defaultAction}>

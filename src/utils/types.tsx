@@ -40,3 +40,11 @@ export type ProfilePageProps = CompositeScreenProps<
     DrawerScreenProps<RootDrawerParamList>
   >
 >;
+
+export type UserDetailPageProps = CompositeScreenProps<
+  NativeStackScreenProps<RootStackParamList, 'UserDetail'>,
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabsParamList>,
+    DrawerScreenProps<RootDrawerParamList>
+  >
+>;

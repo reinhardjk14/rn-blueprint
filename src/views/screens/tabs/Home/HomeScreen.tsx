@@ -54,7 +54,7 @@ const HomeScreen = (props: Props) => {
         ListHeaderComponent={<ExplorerList data={topics} />}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        style={Gutters.largePadding}
+        style={[Gutters.largeLPadding]}
         contentContainerStyle={{paddingBottom: width * 0.3}}
       />
     </Container>

@@ -4,9 +4,10 @@ import {
   HomeScreenProps,
   ManageLikedScreenProps,
   ProfilePageProps,
+  UserDetailPageProps,
 } from 'src/utils/types';
+import {UserDetail} from 'src/views/screens/stacks';
 import DrawerNavigator from './drawerNavigator';
-import TabNavigator from './tabNavigator';
 
 interface INavigationOption {
   name: string;
@@ -16,15 +17,15 @@ interface INavigationOption {
 
 const MainScreen: Array<INavigationOption> = [
   {
-    name: 'Tabs',
-    component: TabNavigator,
+    name: 'Drawer',
+    component: DrawerNavigator,
     options: {
       headerShown: false,
     },
   },
   {
-    name: 'Drawer',
-    component: DrawerNavigator,
+    name: 'UserDetail',
+    component: UserDetail,
     options: {
       headerShown: false,
     },
@@ -33,10 +34,12 @@ const MainScreen: Array<INavigationOption> = [
 
 export const Screens = [...MainScreen];
 
-export type RootStackParamList = {};
+export type RootStackParamList = {
+  UserDetail: UserDetailPageProps;
+};
 export type RootDrawerParamList = {
   Tabs: undefined;
-  Stacks: undefined;
+  Help: undefined;
 };
 
 export type RootTabsParamList = {

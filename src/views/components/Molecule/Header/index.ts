@@ -33,6 +33,7 @@ export interface IHeaderTitle extends IHeader {
   onPressRightIcon?: () => void;
   CustomRightIcon?: React.FunctionComponent;
   showAvatarProfile?: boolean;
+  showLeftIcon?: boolean;
 }
 
 export interface IHeaderSearch extends IHeader {

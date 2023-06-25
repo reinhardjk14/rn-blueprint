@@ -27,6 +27,18 @@ const SearchDetail = (props: SearchDetailPageProps & ReduxProps) => {
     setDetailData(route.params);
   }, [route.params]);
 
+  useEffect(() => {
+    const itemAvailable: ItemPhotoDTO = myLikedPhoto?.find(
+      (i: ItemPhotoDTO) => i?.id === detailData?.id,
+    );
+
+    if (itemAvailable?.id) {
+      setLike(true);
+    } else {
+      setLike(false);
+    }
+  }, [myLikedPhoto, detailData]);
+
   const openDetailUser = React.useCallback(() => {
     NavigationService.navigate('UserDetail', {detailData});
   }, []);

@@ -17,6 +17,7 @@ const HeaderTitle = ({
   rightIcon,
   rightIconColor,
   onPressRightIcon,
+  showLeftIcon = true,
 }: IHeaderTitle) => {
   const {Common, FontSize, Colors} = useTheme();
   const {header: styles} = Common;
@@ -26,19 +27,24 @@ const HeaderTitle = ({
 
   return (
     <HeaderWrapper style={[Common.header.headerBrandContent, style]}>
-      {leftImage ? <Images source={leftImage} style={leftImageStyle} /> : null}
-
-      {!leftImage ? (
-        <TouchableOpacity onPress={onPressLeftIcon || defaultAction}>
-          <Icon name={leftIcon} />
-        </TouchableOpacity>
-      ) : null}
+      {showLeftIcon && (
+        <>
+          {leftImage ? (
+            <Images source={leftImage} style={leftImageStyle} />
+          ) : null}
+          {!leftImage ? (
+            <TouchableOpacity onPress={onPressLeftIcon || defaultAction}>
+              <Icon name={leftIcon} />
+            </TouchableOpacity>
+          ) : null}
+        </>
+      )}
 
       <Text
         variant="semibold"
         color={titleColor || Colors.Primary}
         size="lg"
-        style={styles.headerTitle}>
+        style={[styles.headerTitle, !showLeftIcon && {width: '100%'}]}>
         {title}
       </Text>
       {rightIcon ? (

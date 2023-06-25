@@ -44,5 +44,10 @@ export default function <C>({Colors, Gutters, Layout}: CommonParams<C>) {
       textAlignVertical: 'center',
       width: '90%',
     },
+    headerSearch: {
+      ...Gutters.tinyHPadding,
+      ...Gutters.tinyTPadding,
+      borderBottomWidth: 0,
+    },
   });
 }

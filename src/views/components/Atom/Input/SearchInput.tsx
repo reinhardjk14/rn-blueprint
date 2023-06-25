@@ -1,6 +1,6 @@
 import useDebounce from '_hooks/useDebounce';
 import useTheme from '_hooks/useTheme';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {createRef, useEffect, useRef, useState} from 'react';
 import {LayoutAnimation, TextInput, TouchableOpacity, View} from 'react-native';
 import {Icon} from '../index';
 
@@ -9,6 +9,7 @@ const SearchButton = ({
 }: {
   onChangeValue: (param: string) => any;
 }) => {
+  const searchInputRef = createRef<TextInput>();
   const {Colors, Common} = useTheme();
   const styles = Common.input;
 
@@ -20,11 +21,13 @@ const SearchButton = ({
 
   const handleSearchIconPress = React.useCallback(() => {
     setShowInput(true);
+    searchInputRef.current?.focus();
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   }, []);
 
   const handleCancelPress = React.useCallback(() => {
     setSearchText('');
+    searchInputRef.current?.blur();
     setShowInput(false);
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   }, []);
@@ -48,9 +51,11 @@ const SearchButton = ({
       {showInput ? (
         <View style={styles.inputContainer} ref={inputContainerRef}>
           <TextInput
+            ref={searchInputRef}
             style={styles.input}
             placeholder="Search"
             value={searchText}
+            autoFocus
             onChangeText={setSearchText}
           />
           <TouchableOpacity onPress={handleCancelPress}>

@@ -30,6 +30,7 @@ export const Colors = {
   Cream: '#F8F8F8',
   Pearl: '#F6F6F6',
   Dark: '#000000',
+  SoftRed: '#FF2171',
 };
 
 export const NavigationColors = {

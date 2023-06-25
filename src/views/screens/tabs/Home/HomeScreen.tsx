@@ -15,6 +15,8 @@ import {HomeScreenProps} from 'src/utils/types';
 import CardUserPhoto from './CardUserPhoto';
 import ExplorerList from './ExplorerList';
 import {defaultParam} from './index';
+import NavigationService from 'src/navigators/NavigationService';
+import EmptyResult from '_organism/Layout/EmptyResult';
 
 type Props = ReduxProps & HomeScreenProps;
 const HomeScreen = (props: Props) => {
@@ -61,7 +63,7 @@ const HomeScreen = (props: Props) => {
     setTopics(listTopics);
     setLoading(false);
 
-    // onRefresh();
+    onRefresh();
   }, []);
 
   const onRefresh = React.useCallback(async () => {
@@ -78,13 +80,17 @@ const HomeScreen = (props: Props) => {
     });
   }, []);
 
+  const onSearchValue = React.useCallback((val: string) => {
+    NavigationService.navigate('SearchPage', {searchKeyword: val});
+  }, []);
+
   return (
     <Container style={Common.backgroundLayout}>
       <HeaderSearch
         leftImage={{uri: dummyUserImg}}
         onPressLeftIcon={props.navigation.openDrawer}
         leftImageStyle={Common.avatar}
-        onChangeValue={val => console.log('value', val)}
+        onChangeValue={onSearchValue}
         style={Common.header.headerHome}
       />
       {loading ? (
@@ -104,6 +110,7 @@ const HomeScreen = (props: Props) => {
           onEndReachedThreshold={0.5}
           onEndReached={onEndReachedGetData}
           ListFooterComponent={<FooterComponent isVisible={isLoadmore} />}
+          ListEmptyComponent={<EmptyResult />}
         />
       )}
     </Container>

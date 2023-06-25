@@ -1,3 +1,5 @@
+import {Share} from 'react-native';
+
 export function formatNumber(number: number): string {
   const units: string[] = ['', 'K', 'M', 'B', 'T'];
 
@@ -23,4 +25,24 @@ export const URLSearchParams = (params: any = {}) => {
   }
 
   return qparam;
+};
+
+export const onShare = async (content: any) => {
+  try {
+    const result = await Share.share({
+      message: content,
+    });
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
+      }
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  } catch (error) {
+    // alert(error.message);
+    console.log('error', error);
+  }
 };

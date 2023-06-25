@@ -4,9 +4,11 @@ import {
   HomeScreenProps,
   ManageLikedScreenProps,
   ProfilePageProps,
+  SearchDetailPageProps,
+  SearchPageProps,
   UserDetailPageProps,
 } from 'src/utils/types';
-import {UserDetail} from 'src/views/screens/stacks';
+import {SearchDetail, SearchPage, UserDetail} from 'src/views/screens/stacks';
 import DrawerNavigator from './drawerNavigator';
 
 interface INavigationOption {
@@ -30,12 +32,29 @@ const MainScreen: Array<INavigationOption> = [
       headerShown: false,
     },
   },
+  {
+    name: 'SearchPage',
+    component: SearchPage,
+    options: {
+      headerShown: false,
+    },
+  },
+  {
+    name: 'SearchDetailPage',
+    component: SearchDetail,
+    options: {
+      presentation: 'modal',
+      headerShown: false,
+    },
+  },
 ];
 
 export const Screens = [...MainScreen];
 
 export type RootStackParamList = {
   UserDetail: UserDetailPageProps;
+  SearchPage: SearchPageProps;
+  SearchDetailPage: SearchDetailPageProps;
 };
 export type RootDrawerParamList = {
   Tabs: undefined;

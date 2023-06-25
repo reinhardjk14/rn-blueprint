@@ -2,13 +2,15 @@ import {height, width} from '_theme/Layout';
 import React, {useState} from 'react';
 import {Platform, StyleProp, View, ViewStyle} from 'react-native';
 import {Blurhash} from 'react-native-blurhash';
-import {FastImageProps, ResizeMode} from 'react-native-fast-image';
+import FastImage, {FastImageProps, ResizeMode} from 'react-native-fast-image';
 import ImageModal from 'react-native-image-modal';
 
 interface ImageProps extends Omit<FastImageProps, 'style'> {
   blurHash?: string;
   style?: StyleProp<ViewStyle>;
   resizeMode?: ResizeMode;
+  presentation?: 'modal' | undefined;
+  onDoubleTap?: () => void;
 }
 
 const Images = ({
@@ -16,6 +18,8 @@ const Images = ({
   blurHash,
   style,
   resizeMode = 'cover',
+  presentation = 'modal',
+  onDoubleTap,
 }: ImageProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -43,20 +47,31 @@ const Images = ({
   return (
     <View>
       {isLoading && renderBlurHashPlaceholder()}
-
-      <ImageModal
-        style={[{display: isLoading ? 'none' : 'flex'}, style]}
-        source={source}
-        modalImageResizeMode="contain"
-        modalImageStyle={{
-          width: width * 0.9,
-          height: height * 0.9,
-        }}
-        resizeMode={resizeMode}
-        onLoad={handleImageLoad}
-        onError={handleImageError}
-        fallback={Platform.OS === 'android'}
-      />
+      {presentation === 'modal' ? (
+        <ImageModal
+          style={[{display: isLoading ? 'none' : 'flex'}, style]}
+          source={source}
+          modalImageResizeMode="contain"
+          modalImageStyle={{
+            width: width * 0.9,
+            height: height * 0.9,
+          }}
+          resizeMode={resizeMode}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          fallback={Platform.OS === 'android'}
+          onDoubleTap={onDoubleTap}
+        />
+      ) : (
+        <FastImage
+          style={[{display: isLoading ? 'none' : 'flex'}, style]}
+          source={source}
+          resizeMode={resizeMode}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          fallback={Platform.OS === 'android'}
+        />
+      )}
     </View>
   );
 };

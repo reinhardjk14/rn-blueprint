@@ -1,4 +1,4 @@
-import {height, width} from '_theme/Layout';
+import {width} from '_theme/Layout';
 import {CommonParams} from '_theme/theme';
 import {StyleSheet} from 'react-native';
 
@@ -19,15 +19,23 @@ export default function <C>({
       alignItems: 'center',
       borderWidth: 0.5,
       borderColor: Colors.LightGray,
-      borderRadius: 5,
+      borderRadius: width * 0.03,
       paddingHorizontal: 5,
       overflow: 'hidden',
     },
     input: {
       ...args.Fonts.normal,
+      ...Gutters.smallVPadding,
       flex: 1,
-      height: 40,
       marginLeft: 5,
+    },
+    searchWrapper: {
+      ...Layout.row,
+      ...Layout.alignItemsCenter,
+      ...Gutters.smallHPadding,
+      borderRadius: width * 0.03,
+      borderColor: Colors.Dark,
+      borderWidth: 0.5,
     },
   });
 }

@@ -1,7 +1,6 @@
 import Endpoints from '_services/API/endpoint';
 import {http} from '_services/API/http';
-import {Dispatch} from 'react';
-import {AnyAction} from 'redux';
+import {AnyAction, Dispatch} from 'redux';
 import {ItemPhotoDTO} from 'src/Interfaces/photos';
 import {URLSearchParams} from 'src/utils/helpers';
 import {TYPES} from '../actionTypes';

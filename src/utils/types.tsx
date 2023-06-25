@@ -1,6 +1,6 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import {DrawerScreenProps} from '@react-navigation/drawer';
-import {CompositeScreenProps} from '@react-navigation/native';
+import {CompositeScreenProps, RouteProp} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {
@@ -43,6 +43,22 @@ export type ProfilePageProps = CompositeScreenProps<
 
 export type UserDetailPageProps = CompositeScreenProps<
   NativeStackScreenProps<RootStackParamList, 'UserDetail'>,
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabsParamList>,
+    DrawerScreenProps<RootDrawerParamList>
+  >
+>;
+
+export type SearchPageProps = CompositeScreenProps<
+  NativeStackScreenProps<RootStackParamList, 'SearchPage'>,
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabsParamList>,
+    DrawerScreenProps<RootDrawerParamList>
+  >
+>;
+
+export type SearchDetailPageProps = CompositeScreenProps<
+  NativeStackScreenProps<RootStackParamList, 'SearchDetailPage'>,
   CompositeScreenProps<
     BottomTabScreenProps<RootTabsParamList>,
     DrawerScreenProps<RootDrawerParamList>

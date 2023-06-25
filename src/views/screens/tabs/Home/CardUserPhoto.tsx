@@ -4,9 +4,8 @@ import useTheme from '_hooks/useTheme';
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {CardUserPhotoProps} from './index';
 import NavigationService from 'src/navigators/NavigationService';
-import {width} from '_theme/Layout';
+import {CardUserPhotoProps} from './index';
 
 const CardUserPhoto = ({data}: CardUserPhotoProps) => {
   const {Layout, Gutters, Common} = useTheme();
@@ -40,7 +39,7 @@ const CardUserPhoto = ({data}: CardUserPhotoProps) => {
         <Images
           source={{
             uri: data.urls?.raw,
-            cache: FastImage.cacheControl.cacheOnly,
+            cache: FastImage.cacheControl.immutable,
             priority: FastImage.priority.normal,
           }}
           blurHash={data?.blur_hash}

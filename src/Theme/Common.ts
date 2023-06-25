@@ -7,6 +7,7 @@ import {StyleSheet} from 'react-native';
 import buttonStyles from './components/Buttons';
 import headerStyles from './components/Headers';
 import inputStyles from './components/Input';
+import searchPageStyles from './../views/screens/stacks/Search/SearchPageStyle';
 import {CommonParams} from './theme';
 import {width} from './Layout';
 
@@ -114,5 +115,6 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
       height: width * 0.6,
       borderRadius: width * 0.03,
     },
+    searchStyle: searchPageStyles({Colors, ...args}),
   };
 }

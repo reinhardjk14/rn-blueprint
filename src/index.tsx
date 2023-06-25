@@ -1,10 +1,7 @@
-import {
-  NavigationContainer,
-  useNavigationContainerRef,
-} from '@react-navigation/native';
-import React, {useEffect, useRef, useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
 import {ConnectedProps, connect} from 'react-redux';
-import NavigationService from './navigators/NavigationService';
+import {navigationRef} from './navigators/NavigationService';
 import StackNavigator from './navigators/stackNavigator';
 import {RootState} from './redux';
 import {setCurrentRouteName} from './redux/actions/main';
@@ -12,9 +9,6 @@ import {setCurrentRouteName} from './redux/actions/main';
 interface Props extends ReduxProps {}
 
 function App(props: Props) {
-  const {_setCurrentRouteName} = props;
-  const navigationRef = useNavigationContainerRef();
-  const routeNameRef = useRef<string | undefined>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -30,17 +24,7 @@ function App(props: Props) {
   }, []);
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      onReady={() => {
-        routeNameRef.current = navigationRef?.getCurrentRoute()?.name;
-        NavigationService.setTopLevelNavigator(navigationRef);
-      }}
-      onStateChange={async () => {
-        const currentRouteName = navigationRef?.getCurrentRoute()?.name;
-        _setCurrentRouteName(currentRouteName);
-        routeNameRef.current = currentRouteName;
-      }}>
+    <NavigationContainer ref={navigationRef}>
       <StackNavigator />
     </NavigationContainer>
   );

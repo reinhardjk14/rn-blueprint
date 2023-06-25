@@ -1,44 +1,57 @@
-import {CommonActions, StackActions} from '@react-navigation/native';
+import {
+  CommonActions,
+  StackActions,
+  createNavigationContainerRef,
+} from '@react-navigation/native';
+import {
+  RootDrawerParamList,
+  RootStackParamList,
+  RootTabsParamList,
+} from './screens';
 
-let navigator: any;
-const setTopLevelNavigator = (navigatorRef: any) => {
-  navigator = navigatorRef;
-};
+type keyRouteNames =
+  | keyof RootStackParamList
+  | keyof RootDrawerParamList
+  | keyof RootTabsParamList;
 
-function navigate(routeName: string, params?: any, key: string = '') {
-  navigator.dispatch(
-    CommonActions.navigate({
-      name: routeName,
-      params,
+export const navigationRef = createNavigationContainerRef<
+  RootStackParamList & RootDrawerParamList & RootTabsParamList
+>();
+
+function navigate(routeName: keyRouteNames, params?: any, key: string = '') {
+  if (navigationRef.isReady()) {
+    navigationRef.navigate(routeName, {
+      ...params,
       key,
-    }),
-  );
+    });
+  }
 }
 
 function navigateBack() {
-  navigator.dispatch(StackActions.pop(1));
+  navigationRef.dispatch(CommonActions.goBack());
 }
 
-function navigateAndReset(routeName: string, params?: any, routes?: any) {
-  navigator.dispatch(
-    CommonActions.reset({
-      index: 0,
-      key: '',
-      routes: routes
-        ? routes
-        : [
-            {
-              name: routeName,
-              params: params,
-            },
-          ],
-    }),
-  );
+function replace(name: keyRouteNames, params?: any) {
+  navigationRef.dispatch(StackActions.replace(name, params));
+}
+
+function navigateAndReset(
+  routes: Array<{name: keyRouteNames; params?: any; key?: any}> = [],
+  index = 0,
+) {
+  if (navigationRef.isReady()) {
+    navigationRef.dispatch(
+      CommonActions.reset({
+        index,
+        routes,
+      }),
+    );
+  }
 }
 
 export default {
-  setTopLevelNavigator,
   navigate,
   navigateBack,
   navigateAndReset,
+  replace,
 };

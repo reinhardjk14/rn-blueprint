@@ -1,6 +1,9 @@
 import {ItemPhotoDTO} from 'src/Interfaces/photos';
 import {ItemTopicDTO} from 'src/Interfaces/topics';
 
+export const dummyUserImg =
+  'https://images.unsplash.com/placeholder-avatars/extra-large.jpg';
+
 export const listPhotos: ItemPhotoDTO[] = [
   {
     id: 'HegvNcZXWTE',

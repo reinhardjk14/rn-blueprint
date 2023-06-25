@@ -1,7 +1,10 @@
-import {listPhotos, listTopics} from '_constant/dummy';
+import {ParamPhotosType, getListPhotos, getListTopics} from '_actions/photos';
+import {dummyUserImg, listPhotos, listTopics} from '_constant/dummy';
 import useTheme from '_hooks/useTheme';
 import {HeaderSearch} from '_molecule/Header';
 import {Container} from '_organism/Basic';
+import FooterComponent from '_organism/Layout/FooterComponent';
+import {width} from '_theme/Layout';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import {ConnectedProps, connect} from 'react-redux';
@@ -11,29 +14,9 @@ import {RootState} from 'src/redux';
 import {HomeScreenProps} from 'src/utils/types';
 import CardUserPhoto from './CardUserPhoto';
 import ExplorerList from './ExplorerList';
-import {width} from '_theme/Layout';
-import {ParamPhotosType, getListPhotos, getListTopics} from '_actions/photos';
+import {defaultParam} from './index';
 
 type Props = ReduxProps & HomeScreenProps;
-const dummyUserImg =
-  'https://images.unsplash.com/placeholder-avatars/extra-large.jpg';
-
-const FooterComponent = ({isVisible}: {isVisible: boolean}) => {
-  const {Layout, Colors} = useTheme();
-
-  if (isVisible) {
-    return (
-      <View style={Layout.center}>
-        <ActivityIndicator color={Colors.Primary} />
-      </View>
-    );
-  }
-  return null;
-};
-const defaultParam: ParamPhotosType = {
-  page: 1,
-};
-
 const HomeScreen = (props: Props) => {
   const {Gutters, Colors, Common, Layout} = useTheme();
   const {_getPhotos, _getTopics} = props;

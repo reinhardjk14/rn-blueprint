@@ -12,11 +12,27 @@ import {HomeScreenProps} from 'src/utils/types';
 import CardUserPhoto from './CardUserPhoto';
 import ExplorerList from './ExplorerList';
 import {width} from '_theme/Layout';
-import {getListPhotos} from '_actions/photos';
+import {ParamPhotosType, getListPhotos} from '_actions/photos';
 
 type Props = ReduxProps & HomeScreenProps;
 const dummyUserImg =
   'https://images.unsplash.com/placeholder-avatars/extra-large.jpg';
+
+const FooterComponent = ({isVisible}: {isVisible: boolean}) => {
+  const {Layout, Colors} = useTheme();
+
+  if (isVisible) {
+    return (
+      <View style={Layout.center}>
+        <ActivityIndicator color={Colors.Primary} />
+      </View>
+    );
+  }
+  return null;
+};
+const defaultParam: ParamPhotosType = {
+  page: 1,
+};
 
 const HomeScreen = (props: Props) => {
   const {Gutters, Colors, Common, Layout} = useTheme();
@@ -30,6 +46,9 @@ const HomeScreen = (props: Props) => {
   const [photos, setPhotos] = useState<ItemPhotoDTO[]>([]);
   const [topics, setTopics] = useState<ItemTopicDTO[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [isLoadmore, setIsLoadmore] = useState<boolean>(false);
+  const [shouldLoadmore, setShouldLoadmore] = useState<boolean>(true);
+  const [listParams, setListParams] = useState<ParamPhotosType>(defaultParam);
 
   const renderItem = React.useCallback(
     ({item, index}: {item: ItemPhotoDTO; index: number}) => {
@@ -38,24 +57,34 @@ const HomeScreen = (props: Props) => {
     [],
   );
 
-  const fetchData = React.useCallback(async () => {
-    try {
-      const data = await _getPhotos();
-      setPhotos(data);
-      setLoading(false);
-    } catch (error) {
-      console.log('errororor', error);
-      setLoading(false);
-    }
-  }, []);
+  const fetchData = React.useCallback(
+    async (param?: ParamPhotosType): Promise<ItemPhotoDTO[]> => {
+      try {
+        const data = await _getPhotos(param);
+        return data;
+      } catch (error) {
+        setLoading(false);
+        return [];
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     setLoading(true);
+
     // temporary data - remove when implement API
     setPhotos(listPhotos);
     setTopics(listTopics);
     setLoading(false);
-    // fetchData();
+
+    // onRefresh();
+  }, []);
+
+  const onRefresh = React.useCallback(async () => {
+    setListParams(defaultParam);
+    const photoRes = await fetchData(defaultParam);
+    setPhotos(photoRes);
   }, []);
 
   return (
@@ -71,18 +100,63 @@ const HomeScreen = (props: Props) => {
         <View style={[Layout.center, Gutters.largeVPadding]}>
           <ActivityIndicator color={Colors.Primary} />
         </View>
-      ) : null}
-
-      <FlatList
-        data={photos}
-        ListHeaderComponent={<ExplorerList data={topics} />}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        style={[Gutters.largeLPadding]}
-        contentContainerStyle={{paddingBottom: width * 0.3}}
-      />
+      ) : (
+        <FlatList
+          data={photos}
+          ListHeaderComponent={<ExplorerList data={topics} />}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          style={[Gutters.largeLPadding]}
+          contentContainerStyle={{paddingBottom: width * 0.3}}
+          refreshing={loading}
+          onRefresh={onRefresh}
+          onEndReachedThreshold={0.5}
+          onEndReached={onEndReachedGetData}
+          ListFooterComponent={<FooterComponent isVisible={isLoadmore} />}
+        />
+      )}
     </Container>
   );
+
+  function onEndReachedGetData() {
+    const newPage = listParams.page + 1;
+    if (shouldLoadmore) {
+      setIsLoadmore(true);
+      const newParam: ParamPhotosType = {
+        ...listParams,
+        page: newPage,
+      };
+      setListParams(newParam);
+      onLoadMoreList(newParam);
+    } else {
+      setIsLoadmore(false);
+    }
+  }
+
+  async function onLoadMoreList(param?: ParamPhotosType) {
+    try {
+      const newDataRes = await fetchData(param);
+      if (newDataRes.length) {
+        // check value existed to avoid duplicate
+        const dataExisted = photos.find(i => {
+          for (const el of newDataRes) {
+            if (i.id === el.id) {
+              return i;
+            }
+          }
+        });
+        if (!dataExisted) {
+          setPhotos([...photos, ...newDataRes]);
+        }
+        setShouldLoadmore(true);
+      } else {
+        setShouldLoadmore(false);
+      }
+      setIsLoadmore(false);
+    } catch (error) {
+      setIsLoadmore(false);
+    }
+  }
 };
 
 const mapStateToProps = ({}: RootState) => ({});

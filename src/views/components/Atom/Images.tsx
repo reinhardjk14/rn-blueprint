@@ -49,9 +49,6 @@ const Images = ({
         resizeMode={resizeMode}
         onLoad={handleImageLoad}
         onError={handleImageError}
-        onLoadEnd={() => {
-          console.log('loadend');
-        }}
         fallback={Platform.OS === 'android'}
       />
     </View>

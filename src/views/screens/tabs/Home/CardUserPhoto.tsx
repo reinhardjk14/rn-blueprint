@@ -6,6 +6,7 @@ import {TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {CardUserPhotoProps} from './index';
 import NavigationService from 'src/navigators/NavigationService';
+import {width} from '_theme/Layout';
 
 const CardUserPhoto = ({data}: CardUserPhotoProps) => {
   const {Layout, Gutters, Common} = useTheme();

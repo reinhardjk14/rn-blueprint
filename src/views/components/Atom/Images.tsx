@@ -1,8 +1,9 @@
-import {width} from '_theme/Layout';
+import {height, width} from '_theme/Layout';
 import React, {useState} from 'react';
 import {Platform, StyleProp, View, ViewStyle} from 'react-native';
 import {Blurhash} from 'react-native-blurhash';
-import FastImage, {FastImageProps, ResizeMode} from 'react-native-fast-image';
+import {FastImageProps, ResizeMode} from 'react-native-fast-image';
+import ImageModal from 'react-native-image-modal';
 
 interface ImageProps extends Omit<FastImageProps, 'style'> {
   blurHash?: string;
@@ -43,9 +44,14 @@ const Images = ({
     <View>
       {isLoading && renderBlurHashPlaceholder()}
 
-      <FastImage
+      <ImageModal
         style={[{display: isLoading ? 'none' : 'flex'}, style]}
         source={source}
+        modalImageResizeMode="contain"
+        modalImageStyle={{
+          width: width * 0.9,
+          height: height * 0.9,
+        }}
         resizeMode={resizeMode}
         onLoad={handleImageLoad}
         onError={handleImageError}

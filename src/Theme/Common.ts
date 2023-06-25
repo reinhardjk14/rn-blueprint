@@ -110,7 +110,8 @@ export default function <C>({Colors, ...args}: CommonParams<C>) {
       marginHorizontal: width * 0.03,
     },
     photoItem: {
-      aspectRatio: 1.2,
+      width: width * 0.915,
+      height: width * 0.6,
       borderRadius: width * 0.03,
     },
   };

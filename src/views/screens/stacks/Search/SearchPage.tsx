@@ -93,7 +93,7 @@ const SearchPage = (props: Props) => {
 
   return (
     <Container style={Common.backgroundLayout}>
-      <HeaderWrapper style={Common.header.headerSearch}>
+      <View style={Common.header.headerSearch}>
         <View style={styles.searchWrapper}>
           <Icon name="search" size={20} color={Colors.Dark} />
           <TextInput
@@ -104,7 +104,7 @@ const SearchPage = (props: Props) => {
             onChangeText={setSearchText}
           />
         </View>
-      </HeaderWrapper>
+      </View>
       <MasonryList
         data={searchResult}
         keyExtractor={keyExtractor}

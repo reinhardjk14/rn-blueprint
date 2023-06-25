@@ -1,38 +1,46 @@
+import {clearLiked, dislikePhoto, likePhoto} from '_actions/photos';
 import Icon from '_atom/Icon';
-import moment from 'moment';
 import Images from '_atom/Images';
 import Text from '_atom/Text';
 import useTheme from '_hooks/useTheme';
 import {HeaderLeftIcon} from '_molecule/Header';
 import {Container, Content} from '_organism/Basic';
 import {height, width} from '_theme/Layout';
+import moment from 'moment';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import {ConnectedProps, connect} from 'react-redux';
 import {ItemPhotoDTO} from 'src/Interfaces/photos';
 import NavigationService from 'src/navigators/NavigationService';
-import {SearchDetailPageProps} from 'src/utils/types';
+import {RootState} from 'src/redux';
 import {onShare} from 'src/utils/helpers';
+import {SearchDetailPageProps} from 'src/utils/types';
 
-const SearchDetail = (props: SearchDetailPageProps) => {
-  const {route} = props;
+const SearchDetail = (props: SearchDetailPageProps & ReduxProps) => {
+  const {route, myLikedPhoto, _dislikePhoto, _likePhoto} = props;
   const {Gutters, Colors, Layout, Common} = useTheme();
   const [detailData, setDetailData] = useState<ItemPhotoDTO>();
   const [like, setLike] = useState<boolean>(false);
 
   useEffect(() => {
-    if (route?.params) {
-      setDetailData(route?.params);
-    }
+    setDetailData(route.params);
   }, [route.params]);
 
   const openDetailUser = React.useCallback(() => {
     NavigationService.navigate('UserDetail', {detailData});
   }, []);
 
-  const onToggleLike = React.useCallback(() => {
-    setLike(prev => !prev);
-  }, []);
+  const onLikePhoto = React.useCallback(() => {
+    setLike(true);
+    console.log('add like', myLikedPhoto, detailData);
+    _likePhoto(detailData);
+  }, [detailData]);
+
+  const onDislikePhoto = React.useCallback(() => {
+    setLike(false);
+    _dislikePhoto(detailData);
+  }, [detailData]);
 
   const onShareAction = React.useCallback(() => {
     const content = `I found this awesome, go check this out \n\n${detailData?.links?.html}`;
@@ -55,9 +63,13 @@ const SearchDetail = (props: SearchDetailPageProps) => {
               height: height * 0.3,
               borderRadius: width * 0.03,
             }}
-            onDoubleTap={() => setLike(true)}
           />
-          <View style={[Gutters.xlargeBMargin, Gutters.smallTMargin]}>
+          <View
+            style={[
+              Gutters.xlargeBMargin,
+              Gutters.smallTMargin,
+              {width: '100%'},
+            ]}>
             <Text
               text={moment(detailData?.created_at).format('LL, hh:mm')}
               color={Colors.LightGray}
@@ -94,7 +106,7 @@ const SearchDetail = (props: SearchDetailPageProps) => {
             </TouchableOpacity>
             <View style={[Layout.row, {flex: 2}]}>
               <TouchableOpacity
-                onPress={onToggleLike}
+                onPress={() => (like ? onDislikePhoto() : onLikePhoto())}
                 style={[Layout.center, Layout.justifyContentStart, {flex: 1}]}>
                 <Icon
                   name={like ? 'heartfilled' : 'heart'}
@@ -116,4 +128,16 @@ const SearchDetail = (props: SearchDetailPageProps) => {
   );
 };
 
-export default SearchDetail;
+const mapStateToProps = ({photos}: RootState) => ({
+  myLikedPhoto: photos.myLikedPhotos,
+});
+const mapDispatchToProps = {
+  _likePhoto: likePhoto,
+  _dislikePhoto: dislikePhoto,
+  _clearLiked: clearLiked,
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type ReduxProps = ConnectedProps<typeof connector>;
+
+export default connector(SearchDetail);

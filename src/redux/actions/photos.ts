@@ -6,6 +6,20 @@ import {URLSearchParams} from 'src/utils/helpers';
 import {TYPES} from '../actionTypes';
 import {ItemTopicDTO} from 'src/Interfaces/topics';
 
+export const likePhoto = (payload: ItemPhotoDTO) => ({
+  type: TYPES.PHOTOS.LIKE_PHOTO,
+  payload,
+});
+
+export const dislikePhoto = (payload: ItemPhotoDTO) => ({
+  type: TYPES.PHOTOS.DISLIKE_PHOTO,
+  payload,
+});
+
+export const clearLiked = () => ({
+  type: TYPES.PHOTOS.CLEAR_ALL_LIKED,
+});
+
 export type ParamPhotosType = {
   page: number;
   per_page?: number;

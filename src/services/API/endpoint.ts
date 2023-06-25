@@ -3,4 +3,7 @@ export default class Endpoints {
     listPhotos: '/photos',
     searchPhotos: '/search/photos',
   };
+  static topics = {
+    topic: '/topics',
+  };
 }

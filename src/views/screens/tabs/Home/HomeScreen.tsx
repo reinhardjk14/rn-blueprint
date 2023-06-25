@@ -12,7 +12,7 @@ import {HomeScreenProps} from 'src/utils/types';
 import CardUserPhoto from './CardUserPhoto';
 import ExplorerList from './ExplorerList';
 import {width} from '_theme/Layout';
-import {ParamPhotosType, getListPhotos} from '_actions/photos';
+import {ParamPhotosType, getListPhotos, getListTopics} from '_actions/photos';
 
 type Props = ReduxProps & HomeScreenProps;
 const dummyUserImg =
@@ -36,7 +36,7 @@ const defaultParam: ParamPhotosType = {
 
 const HomeScreen = (props: Props) => {
   const {Gutters, Colors, Common, Layout} = useTheme();
-  const {_getPhotos} = props;
+  const {_getPhotos, _getTopics} = props;
 
   const keyExtractor = React.useCallback(
     (item: any, index: number) => index?.toString(),
@@ -83,8 +83,16 @@ const HomeScreen = (props: Props) => {
 
   const onRefresh = React.useCallback(async () => {
     setListParams(defaultParam);
-    const photoRes = await fetchData(defaultParam);
-    setPhotos(photoRes);
+    Promise.all([
+      fetchData(defaultParam).then(photoRes => {
+        setPhotos(photoRes);
+      }),
+      _getTopics().then(topicRes => {
+        setTopics(topicRes);
+      }),
+    ]).finally(() => {
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -162,6 +170,7 @@ const HomeScreen = (props: Props) => {
 const mapStateToProps = ({}: RootState) => ({});
 const mapDispatchToProps = {
   _getPhotos: getListPhotos,
+  _getTopics: getListTopics,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

@@ -45,7 +45,6 @@ const SearchDetail = (props: SearchDetailPageProps & ReduxProps) => {
 
   const onLikePhoto = React.useCallback(() => {
     setLike(true);
-    console.log('add like', myLikedPhoto, detailData);
     _likePhoto(detailData);
   }, [detailData]);
 

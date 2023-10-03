@@ -1,5 +1,5 @@
 {
-  "name": "clickstock",
+  "name": "mepo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -16,8 +16,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "postinstall": "cd ios && pod install && cd .."
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",

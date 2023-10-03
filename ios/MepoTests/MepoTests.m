@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface ClickStockTests : XCTestCase
+@interface MepoTests : XCTestCase
 
 @end
 
-@implementation ClickStockTests
+@implementation MepoTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

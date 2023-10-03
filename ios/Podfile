@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'ClickStock' do
+target 'Mepo' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -28,7 +28,7 @@ target 'ClickStock' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
-  target 'ClickStockTests' do
+  target 'MepoTests' do
     inherit! :complete
     # Pods for testing
   end
